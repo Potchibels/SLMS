@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
+$username = htmlspecialchars($_SESSION['username']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +95,15 @@
     </style>
 </head>
 <body> 
+<header>
+    <h2>Welcome, <?php echo $username; ?>!</h2>
+</header>
 
+<nav>
+    <a href="button.php"><button>Button 1</button></a>
+    <a href="button.php"><button>Button 2</button></a>
+    <a href="borrow.php"><button>Go to Borrow Books</button></a>
+    <a href="login.php?logout=1p"><button>Logout</button></a>
+</nav>
 </body>
 </html>
